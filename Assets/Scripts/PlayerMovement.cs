@@ -62,19 +62,20 @@ public class PlayerMovement : MonoBehaviour
       }
       else
       {
-         wallJumpCooldown += Time.deltaTime;
+         wallJumpCooldown += Time.deltaTime; //calculates the time between 2 jumps  
       }
    }
 
    private void Jump()
    {
-
+      //jump logic for if on ground by giving a number to substitute in y axix
       if (isGrounded())
       {
          body.velocity = new Vector2(body.velocity.x, jumpPower);
          anim.SetTrigger("jump");
       }
 
+      //wall climbing jump 
       else if (onWall() && !isGrounded())
       {
          if (horizontalInput == 0)
@@ -89,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
                                                                                      //direction of x axis and upwards direction
          }
       }
-      wallJumpCooldown = 0;
+      wallJumpCooldown = 0; //since done with the jump, set it back to 0
    }
 
    private bool isGrounded()
@@ -105,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
       return raycastHit.collider != null; //returns true when player hits wall 
    }
 
+   //gives true only when no arrow keys pressed, not on wall and when on ground
    public bool canAttack()
    {
       return horizontalInput == 0 && isGrounded() && !onWall();

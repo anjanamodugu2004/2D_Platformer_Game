@@ -34,6 +34,7 @@ public class PlayerAttack : MonoBehaviour
         fireballs[FindFireball()].GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));
     }
 
+    //checks for deactivated fireballs and uses them 
     private int FindFireball()
     {
         for (int i = 0; i < fireballs.Length; i++)
